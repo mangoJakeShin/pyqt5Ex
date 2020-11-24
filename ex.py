@@ -1,5 +1,3 @@
-import random
-r = lambda: random.randint(0,255)
-print('#%02X%02X%02X' % (r(),r(),r()))
+r = 3
 
-print(r)
+print(r % 2)
