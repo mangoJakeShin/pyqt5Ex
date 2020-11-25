@@ -219,8 +219,8 @@ class MyApp(QWidget):
         label1.setFont(font1)
 
         layout = QVBoxLayout()
-        layout.addWidget(label1)
-        layout.addWidget(btn1)
+        layout.addWidget(label1,1)
+        layout.addWidget(btn1,2)
         layout.addWidget(btn2)
         layout.addWidget(btn3)
         layout.addWidget(btn4)

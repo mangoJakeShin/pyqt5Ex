@@ -1,27 +1,12 @@
-# km = 0
-# cm = 0
-# mm = 0
-# m = 0
-#
-# list = []
-#
-# list.append(km)
-# list.append(cm)
-# list.append(mm)
-# list.append(m)
-#
-#
-# for i in list:
-#     print(i)
-
-# 단위 환산기
+#단위 환산기
 
 import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
 
-class MyApp(QWidget):
 
+
+class MyApp(QWidget):
     km = 0
     cm = 0
     mm = 0
@@ -36,29 +21,33 @@ class MyApp(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.value = "0"
-        self.unit = "mm"
+
         qle = QLineEdit(self)
         qle.move(20, 20)
         qle.textChanged[str].connect(self.onChanged)
 
-        # input
+        #input
         self.lbl = QLabel(self)
-        self.lbl.move(100, 50)
-        self.inputlbl = QLabel('hi', self)
-        self.inputlbl.move(20, 55)
+        self.lbl.move(100,50)
+        self.inputlbl = QLabel('hi',self)
+        self.inputlbl.move(20,55)
+
+
 
         self.measurelbl = QLabel('Choose a measurement', self)
         self.measurelbl.move(20, 80)
 
-        self.kmlbl = QLabel(" ")
-        self.kmlbl.move(30, 100)
-        self.mlbl = QLabel(" ")
-        self.mlbl.move(80, 100)
-        self.cmlbl = QLabel(" ")
-        self.cmlbl.move(30, 150)
-        self.mmlbl = QLabel(" ")
-        self.mmlbl.move(80, 150)
+        # self.kmlbl = QLabel(self.kmtxt,self)
+        # self.kmlbl.move(30, 80)
+        #
+        # self.mlbl = QLabel(self.mtxt, self)
+        # self.kmlbl.move(30, 130)
+        #
+        # self.kmlbl = QLabel(self.kmtxt, self)
+        # self.kmlbl.move(30, 80)
+        #
+        # self.kmlbl = QLabel(self.kmtxt, self)
+        # self.kmlbl.move(30, 80)
 
         cb = QComboBox(self)
         cb.addItem('mm')
@@ -74,20 +63,16 @@ class MyApp(QWidget):
         self.show()
 
     def onActivated(self, text):
-        print((self.kmtxt))
         self.measureChange(text)
-        print(self.kmtxt)
-        self.kmlbl.setText(self.kmtxt)
-        self.kmlbl.adjustSize()
-        self.mlbl.setText(self.mtxt)
-        self.mlbl.adjustSize()
-        self.cmlbl.setText(self.cmtxt)
-        self.cmlbl.adjustSize()
-        self.mmlbl.setText(self.mmtxt)
-        self.mmlbl.adjustSize()
+        self.measurelbl.setText(self.inputlbl.text() +" " + text + " is equal to"
+                                + "\n\n" + str(self.mm) + " mm"
+                                + "\t" + str(self.cm) + " cm"
+                                +"\n\n" + str(self.m) + " m"
+                                +"\t\t" + str(self.km) + " km"
+                                )
+        self.measurelbl.adjustSize()
 
-    def measureChange(self, text):
-        print(self.inputlbl.text())
+    def measureChange(self,text):
         a = float(self.inputlbl.text())
         if text == 'mm':
             self.mm = a
@@ -111,16 +96,9 @@ class MyApp(QWidget):
             self.m = a * 1000
             self.km = a
 
-        self.kmtxt = str(self.km) + " km"
-        self.cmtxt = str(self.cm) + ' cm'
-        self.mmtxt = str(self.mm) + ' mm'
-        self.mtxt = str(self.m) + ' m'
-
     def onChanged(self, text):
         self.inputlbl.setText(text)
         self.inputlbl.adjustSize()
-        self.value = text
-
 
 
 if __name__ == '__main__':
