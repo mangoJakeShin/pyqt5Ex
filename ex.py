@@ -42,23 +42,16 @@ class MyApp(QWidget):
         qle.move(20, 20)
         qle.textChanged[str].connect(self.onChanged)
 
+        grid = QGridLayout()
+
         # input
         self.lbl = QLabel(self)
+        # grid.addWidget(self.lbl, 0,0)
         self.lbl.move(100, 50)
+
         self.inputlbl = QLabel('hi', self)
+        # grid.addWidget((self.inputlbl,1,0))
         self.inputlbl.move(20, 55)
-
-        self.measurelbl = QLabel('Choose a measurement', self)
-        self.measurelbl.move(20, 80)
-
-        self.kmlbl = QLabel(" ")
-        self.kmlbl.move(30, 100)
-        self.mlbl = QLabel(" ")
-        self.mlbl.move(80, 100)
-        self.cmlbl = QLabel(" ")
-        self.cmlbl.move(30, 150)
-        self.mmlbl = QLabel(" ")
-        self.mmlbl.move(80, 150)
 
         cb = QComboBox(self)
         cb.addItem('mm')
@@ -66,6 +59,22 @@ class MyApp(QWidget):
         cb.addItem('m')
         cb.addItem('km')
         cb.move(50, 50)
+
+        self.measurelbl = QLabel('Choose a measurement', self)
+        # grid.addWidget(self.measurelbl,2,0)
+        self.measurelbl.move(20, 80)
+
+        self.kmlbl = QLabel("hell")
+        self.kmlbl.move(30, 100)
+        self.mlbl = QLabel("mlbl")
+        self.mlbl.move(80, 100)
+        self.cmlbl = QLabel("cmlbl")
+        self.cmlbl.move(30, 150)
+        self.mmlbl = QLabel("mmlbl ")
+        self.mmlbl.move(80, 150)
+
+
+
 
         cb.activated[str].connect(self.onActivated)
 
@@ -99,6 +108,7 @@ class MyApp(QWidget):
             self.cm = a
             self.m = a / 100
             self.km = a / 100000
+
         elif text == 'm':
             self.mm = a * 1000
             self.cm = a * 100

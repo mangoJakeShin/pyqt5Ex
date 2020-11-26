@@ -75,26 +75,19 @@ class MyApp(QWidget):
     def measureChange(self,text):
         a = float(self.inputlbl.text())
         if text == 'mm':
-            self.mm = a
-            self.cm = a / 10
-            self.m = a / 1000
-            self.km = a / 1000000
+            b = 0
         elif text == 'cm':
-            self.mm = a * 10
-            self.cm = a
-            self.m = a / 100
-            self.km = a / 100000
+            b = 1
         elif text == 'm':
-            self.mm = a * 1000
-            self.cm = a * 100
-            self.m = a
-            self.km = a / 1000
-
+            b = -3
         elif text == 'km':
-            self.mm = a * 1000000
-            self.cm = a * 100000
-            self.m = a * 1000
-            self.km = a
+            b = -6
+
+        self.mm = a / (10 ** (0 - b))
+        self.cm = a / (10 ** (1 - b))
+        self.m = a / (10 ** (3 - b))
+        self.km = a / (10 ** (6 - b))
+
 
     def onChanged(self, text):
         self.inputlbl.setText(text)
