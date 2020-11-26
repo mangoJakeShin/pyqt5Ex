@@ -47,10 +47,10 @@ class MyApp(QWidget,form_class):
         if (self.blurBtn.isChecked()):
             self.blurImg()
             print('blur done')
-
-        if (self.sharpBtn.ischecked()):
-            self.sharpImg()
-            print('sharpening done')
+        #
+        # if (self.sharpBtn.ischecked()):
+        #     self.sharpImg()
+        #     print('sharpening done')
 
         if (self.grayChk.isChecked()):
             self.grayImg()
@@ -71,12 +71,12 @@ class MyApp(QWidget,form_class):
         self.tmp = cv2.blur(self.src,(5,5))
 
     def applyShow(self):
-        print(self.tmp.shape)
+        print(self.src.shape)
         if (len(self.tmp) == 0):
             return
 
         else:
-            tmpPix = QImage(self.tmp.data, self.tmp.shape[1], self.tmp.shape[0],  QImage.Format_RGB888)
+            tmpPix = QImage(self.tmp.data, self.src.shape[1], self.src.shape[0],  QImage.Format_RGB888)
             tmpPixMap = QPixmap.fromImage(tmpPix)
             self.tgtImg.setPixmap(tmpPixMap)
 
